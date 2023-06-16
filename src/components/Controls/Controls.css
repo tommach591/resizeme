@@ -1,0 +1,59 @@
+.Controls {
+  display: flex;
+}
+
+.Buttons {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  margin-right: 3rem;
+}
+
+.Button {
+  width: 12rem;
+}
+
+.Size {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  margin: 0.1rem;
+}
+
+.Size > h1 {
+  width: 2rem;
+  margin-right: 1rem;
+}
+
+.Size > input {
+  width: 4rem;
+  outline: none;
+}
+
+.Size > input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.DefaultSizes {
+  display: grid;
+  grid-template-columns: repeat(2, 3.5rem);
+  gap: 2px;
+}
+
+.Default {
+  border: 1px solid black;
+  border-radius: 2px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 14px;
+}
+
+.Default:hover {
+  cursor: pointer;
+}
