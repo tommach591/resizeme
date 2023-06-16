@@ -1,4 +1,6 @@
-# Resize Me - Mass PNG Resizer
+# Resize Me
+
+A Mass PNG Resizer
 
 ## Setup
 
