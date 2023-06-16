@@ -1,0 +1,19 @@
+.DragAndDrop {
+  width: 30rem;
+  height: 10rem;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+
+  margin-top: 1rem;
+  border-radius: 5px;
+  border: 1px solid black;
+}
+
+.DragAndDrop > * {
+  font-size: 24px;
+  color: black;
+  pointer-events: none;
+}

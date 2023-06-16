@@ -1,7 +1,17 @@
 import "./Controls.css";
 
-function Controls({ width, height, setWidth, setHeight, insertImages }) {
+function Controls({
+  images,
+  width,
+  height,
+  setWidth,
+  setHeight,
+  insertImages,
+  downloadImages,
+}) {
   const defaultSizes = [28, 56, 112, 320];
+  const min = 16;
+  const max = 3000;
 
   return (
     <div className="Controls">
@@ -12,7 +22,6 @@ function Controls({ width, height, setWidth, setHeight, insertImages }) {
           accept="image/png"
           multiple
           onChange={(event) => {
-            console.log(event.target.files.length);
             const images = [];
             for (let i = 0; i < event.target.files.length; i++) {
               images.push(URL.createObjectURL(event.target.files[i]));
@@ -21,7 +30,13 @@ function Controls({ width, height, setWidth, setHeight, insertImages }) {
             event.target.value = "";
           }}
         />
-        <button className="Button">Download</button>
+        <button
+          className="Button"
+          onClick={() => downloadImages()}
+          disabled={images.length === 0}
+        >
+          Download
+        </button>
       </div>
       <div className="Resize">
         <div className="Size">
@@ -30,7 +45,11 @@ function Controls({ width, height, setWidth, setHeight, insertImages }) {
             type="number"
             value={width}
             onChange={(event) => {
-              setWidth(event.target.value);
+              event.target.value < min
+                ? setWidth(min)
+                : event.target.value > max
+                ? setWidth(max)
+                : setWidth(event.target.value);
             }}
           />
         </div>
@@ -40,7 +59,11 @@ function Controls({ width, height, setWidth, setHeight, insertImages }) {
             type="number"
             value={height}
             onChange={(event) => {
-              setHeight(event.target.value);
+              event.target.value < min
+                ? setHeight(min)
+                : event.target.value > max
+                ? setHeight(max)
+                : setHeight(event.target.value);
             }}
           />
         </div>

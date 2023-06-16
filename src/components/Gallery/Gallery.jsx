@@ -1,6 +1,6 @@
 import "./Gallery.css";
 
-function Gallery({ images, removeImages, width, height }) {
+function Gallery({ images, removeImage, width, height }) {
   return (
     <div
       className="Gallery"
@@ -10,7 +10,17 @@ function Gallery({ images, removeImages, width, height }) {
       }}
     >
       {images.map((img, i) => {
-        return <img className="Image" key={i} src={img} alt="" />;
+        return (
+          <img
+            className="Image"
+            key={i}
+            src={img}
+            alt=""
+            onClick={() => {
+              removeImage(i);
+            }}
+          />
+        );
       })}
     </div>
   );
