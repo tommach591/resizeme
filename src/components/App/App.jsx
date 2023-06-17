@@ -215,7 +215,7 @@ function App() {
         updateImageName={updateImageName}
         background={background}
       />
-      <canvas className="Canvas" ref={canvasRef} />
+      <canvas className="Canvas" ref={canvasRef} hidden />
     </div>
   );
 }
