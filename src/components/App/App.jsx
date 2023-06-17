@@ -47,7 +47,7 @@ function App() {
     (type) => {
       const zip = new JSZip();
 
-      const loadImage = (zip, src, i, w, h) => {
+      const loadImage = (zip, src, name, w, h) => {
         return new Promise((resolve, reject) => {
           const img = new Image();
           img.src = src;
@@ -75,9 +75,13 @@ function App() {
             canvas.height = h;
             ctx.clearRect(0, 0, w, h);
             ctx.drawImage(img, xOffset, yOffset, maxWidth, maxHeight);
-            zip.file(`${i}.png`, canvas.toDataURL().split(",")[1], {
-              base64: true,
-            });
+            zip.file(
+              `${name}_${w}x${h}px.png`,
+              canvas.toDataURL().split(",")[1],
+              {
+                base64: true,
+              }
+            );
             resolve(img);
           };
         });
@@ -90,13 +94,11 @@ function App() {
             images.map((src, i) => loadImage(zip, src, i, sizes[0], sizes[0]))
           ).then(() => {
             Promise.all(
-              images.map((src, i) =>
-                loadImage(zip, src, i + images.length, sizes[1], sizes[1])
-              )
+              images.map((src, i) => loadImage(zip, src, i, sizes[1], sizes[1]))
             ).then(() => {
               Promise.all(
                 images.map((src, i) =>
-                  loadImage(zip, src, i + images.length * 2, sizes[2], sizes[2])
+                  loadImage(zip, src, i, sizes[2], sizes[2])
                 )
               ).then(() => {
                 zip.generateAsync({ type: "blob" }).then((content) => {
@@ -113,13 +115,11 @@ function App() {
             images.map((src, i) => loadImage(zip, src, i, sizes[0], sizes[0]))
           ).then(() => {
             Promise.all(
-              images.map((src, i) =>
-                loadImage(zip, src, i + images.length, sizes[1], sizes[1])
-              )
+              images.map((src, i) => loadImage(zip, src, i, sizes[1], sizes[1]))
             ).then(() => {
               Promise.all(
                 images.map((src, i) =>
-                  loadImage(zip, src, i + images.length * 2, sizes[2], sizes[2])
+                  loadImage(zip, src, i, sizes[2], sizes[2])
                 )
               ).then(() => {
                 zip.generateAsync({ type: "blob" }).then((content) => {
@@ -154,7 +154,12 @@ function App() {
         borderColor: background === "#FFFFFF" ? "black" : "white",
       }}
     >
-      <div className="Header">
+      <div
+        className="Header"
+        style={{
+          background: background,
+        }}
+      >
         <h1>Resize Me</h1>
         <div className="Themes">
           {themes.map((color) => (
