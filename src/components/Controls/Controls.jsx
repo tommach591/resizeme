@@ -8,6 +8,7 @@ function Controls({
   setHeight,
   insertImages,
   downloadImages,
+  toggleShowIndex,
 }) {
   const defaultSizes = [28, 56, 112, 320];
   const min = 16;
@@ -22,11 +23,14 @@ function Controls({
           accept="image/png"
           multiple
           onChange={(event) => {
-            const images = [];
+            const newImages = [];
             for (let i = 0; i < event.target.files.length; i++) {
-              images.push(URL.createObjectURL(event.target.files[i]));
+              newImages.push({
+                src: URL.createObjectURL(event.target.files[i]),
+                name: images.length + i,
+              });
             }
-            insertImages(images);
+            insertImages(newImages);
             event.target.value = "";
           }}
         />
@@ -82,6 +86,9 @@ function Controls({
             }}
           />
         </div>
+        <button className="ToggleNumbers" onClick={() => toggleShowIndex()}>
+          Toggle Numbers
+        </button>
       </div>
       <div className="DefaultSizes">
         {defaultSizes.map((size, i) => {

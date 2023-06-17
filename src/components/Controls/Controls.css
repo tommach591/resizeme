@@ -46,6 +46,12 @@
   margin: 0;
 }
 
+.ToggleNumbers {
+  width: 6.5rem;
+  margin-top: 0.5rem;
+  font-size: 12px;
+}
+
 .DefaultSizes {
   display: grid;
   grid-template-columns: repeat(2, 3.5rem);

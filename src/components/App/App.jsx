@@ -5,15 +5,21 @@ import Controls from "../Controls";
 import JSZip from "jszip";
 import { saveAs } from "file-saver";
 import DragAndDrop from "../DragAndDrop/DragAndDrop";
+import FileNames from "../FileNames/FileNames";
 
 function App() {
   const [images, setImages] = useState([]);
   const [width, setWidth] = useState(112);
   const [height, setHeight] = useState(112);
   const [background, setBackground] = useState("#FFFFFF");
+  const [showIndex, setShowIndex] = useState(true);
   const canvasRef = useRef(null);
 
   const themes = ["#FFFFFF", "#313338", "#18181B"];
+
+  const toggleShowIndex = useCallback(() => {
+    setShowIndex(!showIndex);
+  }, [showIndex]);
 
   const insertImages = useCallback(
     (newImages) => {
@@ -31,26 +37,38 @@ function App() {
     [images]
   );
 
+  const updateImageName = useCallback(
+    (index, name) => {
+      let newImages = [...images];
+      newImages[index].name = name;
+      setImages(newImages);
+    },
+    [images]
+  );
+
   const handleUploadPNG = useCallback(
     (files) => {
       const newImages = [];
       for (let i = 0; i < files.length; i++) {
         if (files[i].type === "image/png")
-          newImages.push(URL.createObjectURL(files[i]));
+          newImages.push({
+            src: URL.createObjectURL(files[i]),
+            name: images.length + i,
+          });
       }
       insertImages(newImages);
     },
-    [insertImages]
+    [insertImages, images]
   );
 
   const downloadImages = useCallback(
     (type) => {
       const zip = new JSZip();
 
-      const loadImage = (zip, src, name, w, h) => {
+      const loadImage = (zip, src, w, h) => {
         return new Promise((resolve, reject) => {
           const img = new Image();
-          img.src = src;
+          img.src = src.src;
           img.onerror = reject;
           img.onload = () => {
             const imageWidth = img.width;
@@ -76,7 +94,7 @@ function App() {
             ctx.clearRect(0, 0, w, h);
             ctx.drawImage(img, xOffset, yOffset, maxWidth, maxHeight);
             zip.file(
-              `${name}_${w}x${h}px.png`,
+              `${src.name}_${w}x${h}px.png`,
               canvas.toDataURL().split(",")[1],
               {
                 base64: true,
@@ -91,15 +109,13 @@ function App() {
         case "TWITCH": {
           const sizes = [28, 56, 112];
           Promise.all(
-            images.map((src, i) => loadImage(zip, src, i, sizes[0], sizes[0]))
+            images.map((src) => loadImage(zip, src, sizes[0], sizes[0]))
           ).then(() => {
             Promise.all(
-              images.map((src, i) => loadImage(zip, src, i, sizes[1], sizes[1]))
+              images.map((src) => loadImage(zip, src, sizes[1], sizes[1]))
             ).then(() => {
               Promise.all(
-                images.map((src, i) =>
-                  loadImage(zip, src, i, sizes[2], sizes[2])
-                )
+                images.map((src, i) => loadImage(zip, src, sizes[2], sizes[2]))
               ).then(() => {
                 zip.generateAsync({ type: "blob" }).then((content) => {
                   saveAs(content, "images.zip");
@@ -112,15 +128,13 @@ function App() {
         case "BADGES": {
           const sizes = [28, 56, 112];
           Promise.all(
-            images.map((src, i) => loadImage(zip, src, i, sizes[0], sizes[0]))
+            images.map((src) => loadImage(zip, src, sizes[0], sizes[0]))
           ).then(() => {
             Promise.all(
-              images.map((src, i) => loadImage(zip, src, i, sizes[1], sizes[1]))
+              images.map((src) => loadImage(zip, src, sizes[1], sizes[1]))
             ).then(() => {
               Promise.all(
-                images.map((src, i) =>
-                  loadImage(zip, src, i, sizes[2], sizes[2])
-                )
+                images.map((src) => loadImage(zip, src, sizes[2], sizes[2]))
               ).then(() => {
                 zip.generateAsync({ type: "blob" }).then((content) => {
                   saveAs(content, "images.zip");
@@ -132,7 +146,7 @@ function App() {
         }
         default: {
           Promise.all(
-            images.map((src, i) => loadImage(zip, src, i, width, height))
+            images.map((src) => loadImage(zip, src, width, height))
           ).then(() => {
             zip.generateAsync({ type: "blob" }).then((content) => {
               saveAs(content, "images.zip");
@@ -183,6 +197,7 @@ function App() {
         setHeight={setHeight}
         insertImages={insertImages}
         downloadImages={downloadImages}
+        toggleShowIndex={toggleShowIndex}
       />
       <DragAndDrop handleUploadPNG={handleUploadPNG} />
       <Gallery
@@ -190,7 +205,9 @@ function App() {
         removeImage={removeImage}
         width={width}
         height={height}
+        showIndex={showIndex}
       />
+      <FileNames images={images} updateImageName={updateImageName} />
     </div>
   );
 }

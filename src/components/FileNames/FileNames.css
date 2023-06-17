@@ -1,0 +1,47 @@
+.FileNames {
+  width: 12rem;
+  height: 17.5rem;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  border: 1px solid;
+
+  position: absolute;
+  top: 3rem;
+  right: 5rem;
+
+  padding-bottom: 1rem;
+
+  overflow-y: scroll;
+}
+
+.Title {
+  width: 100%;
+  text-align: center;
+  border-bottom: 1px solid;
+
+  padding-top: 0.25rem;
+  padding-bottom: 0.25rem;
+}
+
+.Name {
+  display: flex;
+  align-items: center;
+
+  margin-top: 0.5rem;
+}
+
+.Name > h1 {
+  width: 1rem;
+  margin-right: 0.5rem;
+}
+
+.Name > input {
+  width: 8rem;
+
+  border: none;
+  border-bottom: 1px solid;
+  outline: none;
+}
