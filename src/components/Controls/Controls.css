@@ -41,15 +41,21 @@
   outline: none;
 }
 
-.Size > input::-webkit-inner-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
+.Toggles {
+  display: flex;
+  flex-direction: column;
+
+  margin-top: 0.75rem;
 }
 
-.ToggleNumbers {
-  width: 6.5rem;
-  margin-top: 0.5rem;
-  font-size: 12px;
+.Checkbox {
+  display: flex;
+  align-items: center;
+}
+
+.Checkbox > h1 {
+  width: 5.5rem;
+  font-size: 13px;
 }
 
 .DefaultSizes {

@@ -1,3 +1,4 @@
+import { useState } from "react";
 import "./Controls.css";
 
 function Controls({
@@ -8,8 +9,10 @@ function Controls({
   setHeight,
   insertImages,
   downloadImages,
-  toggleShowIndex,
+  showIndex,
+  setShowIndex,
 }) {
+  const [maintainRatio, setMaintainRatio] = useState(true);
   const defaultSizes = [28, 56, 112, 320];
   const min = 16;
   const max = 3000;
@@ -64,11 +67,16 @@ function Controls({
             type="number"
             value={width}
             onChange={(event) => {
-              event.target.value < min
-                ? setWidth(min)
-                : event.target.value > max
-                ? setWidth(max)
-                : setWidth(event.target.value);
+              let newValue = width;
+              newValue =
+                event.target.value < min
+                  ? min
+                  : event.target.value > max
+                  ? max
+                  : event.target.value;
+
+              setWidth(newValue);
+              if (maintainRatio) setHeight(newValue);
             }}
           />
         </div>
@@ -78,17 +86,41 @@ function Controls({
             type="number"
             value={height}
             onChange={(event) => {
-              event.target.value < min
-                ? setHeight(min)
-                : event.target.value > max
-                ? setHeight(max)
-                : setHeight(event.target.value);
+              let newValue = width;
+              newValue =
+                event.target.value < min
+                  ? min
+                  : event.target.value > max
+                  ? max
+                  : event.target.value;
+
+              setHeight(newValue);
+              if (maintainRatio) setWidth(newValue);
             }}
           />
         </div>
-        <button className="ToggleNumbers" onClick={() => toggleShowIndex()}>
-          Toggle Numbers
-        </button>
+        <div className="Toggles">
+          <div className="Checkbox">
+            <h1>Maintain Ratio</h1>
+            <input
+              type="checkbox"
+              checked={maintainRatio}
+              onChange={() => {
+                setMaintainRatio(!maintainRatio);
+              }}
+            />
+          </div>
+          <div className="Checkbox">
+            <h1>Show Key</h1>
+            <input
+              type="checkbox"
+              checked={showIndex}
+              onChange={() => {
+                setShowIndex(!showIndex);
+              }}
+            />
+          </div>
+        </div>
       </div>
       <div className="DefaultSizes">
         {defaultSizes.map((size, i) => {

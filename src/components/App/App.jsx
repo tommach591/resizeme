@@ -17,10 +17,6 @@ function App() {
 
   const themes = ["#FFFFFF", "#313338", "#18181B"];
 
-  const toggleShowIndex = useCallback(() => {
-    setShowIndex(!showIndex);
-  }, [showIndex]);
-
   const insertImages = useCallback(
     (newImages) => {
       setImages([...images, ...newImages]);
@@ -200,7 +196,8 @@ function App() {
         setHeight={setHeight}
         insertImages={insertImages}
         downloadImages={downloadImages}
-        toggleShowIndex={toggleShowIndex}
+        showIndex={showIndex}
+        setShowIndex={setShowIndex}
       />
       <DragAndDrop handleUploadPNG={handleUploadPNG} />
       <Gallery
