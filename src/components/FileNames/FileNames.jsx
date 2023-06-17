@@ -1,8 +1,13 @@
 import "./FileNames.css";
 
-function FileNames({ images, updateImageName }) {
+function FileNames({ images, background, updateImageName }) {
   return (
-    <div className="FileNames">
+    <div
+      className="FileNames"
+      style={{
+        background: background,
+      }}
+    >
       <div className="Title">File Names</div>
       <div className="ListOfNames">
         {images.map((src, i) => {

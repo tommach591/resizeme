@@ -84,14 +84,18 @@ function App() {
               maxWidth = h * aspectRatio;
             }
 
-            const xOffset = (w - maxWidth) / 2;
-            const yOffset = (h - maxHeight) / 2;
+            const xOffset = Math.floor((w - maxWidth) / 2);
+            const yOffset = Math.floor((h - maxHeight) / 2);
 
             const canvas = canvasRef.current;
             const ctx = canvas.getContext("2d");
             canvas.width = w;
             canvas.height = h;
+
+            ctx.imageSmoothingEnabled = true;
+            ctx.imageSmoothingQuality = "high";
             ctx.clearRect(0, 0, w, h);
+
             ctx.drawImage(img, xOffset, yOffset, maxWidth, maxHeight);
             zip.file(
               `${src.name}_${w}x${h}px.png`,
@@ -188,7 +192,6 @@ function App() {
           ))}
         </div>
       </div>
-      <canvas className="Canvas" ref={canvasRef} hidden />
       <Controls
         images={images}
         width={width}
@@ -207,7 +210,12 @@ function App() {
         height={height}
         showIndex={showIndex}
       />
-      <FileNames images={images} updateImageName={updateImageName} />
+      <FileNames
+        images={images}
+        updateImageName={updateImageName}
+        background={background}
+      />
+      <canvas className="Canvas" ref={canvasRef} />
     </div>
   );
 }
