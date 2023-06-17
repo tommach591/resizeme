@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useRef, useState } from "react";
 import "./App.css";
 import Gallery from "../Gallery";
 import Controls from "../Controls";
@@ -43,56 +43,107 @@ function App() {
     [insertImages]
   );
 
-  const downloadImages = useCallback(() => {
-    const canvas = canvasRef.current;
-    const ctx = canvas.getContext("2d");
-    const zip = new JSZip();
+  const downloadImages = useCallback(
+    (type) => {
+      const zip = new JSZip();
 
-    const loadImage = (zip, src, i) =>
-      new Promise((resolve, reject) => {
-        const img = new Image();
-        img.src = src;
-        img.onerror = reject;
-        img.onload = () => {
-          const imageWidth = img.width;
-          const imageHeight = img.height;
+      const loadImage = (zip, src, i, w, h) => {
+        return new Promise((resolve, reject) => {
+          const img = new Image();
+          img.src = src;
+          img.onerror = reject;
+          img.onload = () => {
+            const imageWidth = img.width;
+            const imageHeight = img.height;
 
-          const aspectRatio = imageWidth / imageHeight;
+            const aspectRatio = imageWidth / imageHeight;
 
-          let maxWidth = width;
-          let maxHeight = height;
-          if (aspectRatio > 1) {
-            maxHeight = width / aspectRatio;
-          } else {
-            maxWidth = height * aspectRatio;
-          }
+            let maxWidth = w;
+            let maxHeight = h;
+            if (aspectRatio > 1) {
+              maxHeight = w / aspectRatio;
+            } else {
+              maxWidth = h * aspectRatio;
+            }
 
-          const xOffset = (width - maxWidth) / 2;
-          const yOffset = (height - maxHeight) / 2;
+            const xOffset = (w - maxWidth) / 2;
+            const yOffset = (h - maxHeight) / 2;
 
-          ctx.clearRect(0, 0, width, height);
-          ctx.drawImage(img, xOffset, yOffset, maxWidth, maxHeight);
-          zip.file(`${i}.png`, canvas.toDataURL().split(",")[1], {
-            base64: true,
+            const canvas = canvasRef.current;
+            const ctx = canvas.getContext("2d");
+            canvas.width = w;
+            canvas.height = h;
+            ctx.clearRect(0, 0, w, h);
+            ctx.drawImage(img, xOffset, yOffset, maxWidth, maxHeight);
+            zip.file(`${i}.png`, canvas.toDataURL().split(",")[1], {
+              base64: true,
+            });
+            resolve(img);
+          };
+        });
+      };
+
+      switch (type) {
+        case "TWITCH": {
+          const sizes = [28, 56, 112];
+          Promise.all(
+            images.map((src, i) => loadImage(zip, src, i, sizes[0], sizes[0]))
+          ).then(() => {
+            Promise.all(
+              images.map((src, i) =>
+                loadImage(zip, src, i + images.length, sizes[1], sizes[1])
+              )
+            ).then(() => {
+              Promise.all(
+                images.map((src, i) =>
+                  loadImage(zip, src, i + images.length * 2, sizes[2], sizes[2])
+                )
+              ).then(() => {
+                zip.generateAsync({ type: "blob" }).then((content) => {
+                  saveAs(content, "images.zip");
+                });
+              });
+            });
           });
-          resolve(img);
-        };
-      });
-
-    Promise.all(images.map((src, i) => loadImage(zip, src, i))).then(() => {
-      zip.generateAsync({ type: "blob" }).then((content) => {
-        saveAs(content, "images.zip");
-      });
-    });
-  }, [images, width, height]);
-
-  useEffect(() => {
-    const canvas = canvasRef.current;
-    const ctx = canvas.getContext("2d");
-    canvas.width = width;
-    canvas.height = height;
-    ctx.clearRect(0, 0, canvasRef.current.width, canvasRef.current.height);
-  }, [width, height]);
+          break;
+        }
+        case "BADGES": {
+          const sizes = [28, 56, 112];
+          Promise.all(
+            images.map((src, i) => loadImage(zip, src, i, sizes[0], sizes[0]))
+          ).then(() => {
+            Promise.all(
+              images.map((src, i) =>
+                loadImage(zip, src, i + images.length, sizes[1], sizes[1])
+              )
+            ).then(() => {
+              Promise.all(
+                images.map((src, i) =>
+                  loadImage(zip, src, i + images.length * 2, sizes[2], sizes[2])
+                )
+              ).then(() => {
+                zip.generateAsync({ type: "blob" }).then((content) => {
+                  saveAs(content, "images.zip");
+                });
+              });
+            });
+          });
+          break;
+        }
+        default: {
+          Promise.all(
+            images.map((src, i) => loadImage(zip, src, i, width, height))
+          ).then(() => {
+            zip.generateAsync({ type: "blob" }).then((content) => {
+              saveAs(content, "images.zip");
+            });
+          });
+          break;
+        }
+      }
+    },
+    [images, width, height]
+  );
 
   return (
     <div

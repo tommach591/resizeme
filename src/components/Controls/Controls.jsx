@@ -30,12 +30,27 @@ function Controls({
             event.target.value = "";
           }}
         />
+        <h1 className="Download">Download</h1>
         <button
           className="Button"
           onClick={() => downloadImages()}
           disabled={images.length === 0}
         >
-          Download
+          Size
+        </button>
+        <button
+          className="Button"
+          onClick={() => downloadImages("TWITCH")}
+          disabled={images.length === 0}
+        >
+          Twitch
+        </button>
+        <button
+          className="Button"
+          onClick={() => downloadImages("BADGES")}
+          disabled={images.length === 0}
+        >
+          Badge
         </button>
       </div>
       <div className="Resize">
