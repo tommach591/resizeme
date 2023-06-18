@@ -11,15 +11,16 @@ function Gallery({ images, removeImage, width, height, showIndex }) {
     >
       {images.map((img, i) => {
         return (
-          <div className="Image" key={i}>
+          <div
+            className="Image"
+            key={i}
+            onClick={() => {
+              removeImage(i);
+            }}
+          >
             {showIndex && <h1>{i}</h1>}
-            <img
-              src={img.src}
-              alt=""
-              onClick={() => {
-                removeImage(i);
-              }}
-            />
+            <div className="Delete" />
+            <img src={img.src} alt="" />
           </div>
         );
       })}
