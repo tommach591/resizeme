@@ -27,13 +27,13 @@
   justify-content: center;
 
   margin-bottom: 0.1rem;
-
   margin-right: 1rem;
 }
 
 .Size > h1 {
   width: 2rem;
   margin-right: 1rem;
+  font-size: 14px;
 }
 
 .Size > input {

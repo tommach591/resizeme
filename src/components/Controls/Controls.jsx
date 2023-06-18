@@ -37,13 +37,13 @@ function Controls({
             event.target.value = "";
           }}
         />
-        <h1 className="Download">Download</h1>
+        <h1 className="Download">Download Zip</h1>
         <button
           className="Button"
           onClick={() => downloadImages()}
           disabled={images.length === 0}
         >
-          Size
+          Current Size
         </button>
         <button
           className="Button"
