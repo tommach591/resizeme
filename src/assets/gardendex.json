@@ -1,0 +1,242 @@
+{    
+    "1": {
+        "id": "1",
+        "name": "Tum Plant",
+        "image": "https://i.imgur.com/d5zetbA.png",
+        "info": "A legendary plant that can cure cancer (supposedly)."
+    },
+    "2": {
+        "id": "2",
+        "name": "Sunflower",
+        "image": "https://i.imgur.com/B9Lm3cz.png",
+        "info": "The surface temperature of this flower is 294K!"
+    },
+    "3": {
+        "id": "3",
+        "name": "Plant Three",
+        "image": "https://i.imgur.com/7XK7dVm.png",
+        "info": "The third (pog no way) plant ever created."
+    },
+    "4": {
+        "id": "4",
+        "name": "Copium Plant",
+        "image": "https://i.imgur.com/CYp40YG.png",
+        "info": "A new type of drug that helps zoomers cope with loss and failure."
+    },
+    "5": {
+        "id": "5",
+        "name": "Strange Plant",
+        "image": "https://i.imgur.com/KNm9Wqn.png",
+        "info": "That's a weird looking di-"
+    },
+    "6": {
+        "id": "6",
+        "name": "Pansy?",
+        "image": "https://i.imgur.com/PLbDwHG.png",
+        "info": "I think this is a pansy? I don't know. The artist doesn't even know."
+    },
+    "7": {
+        "id": "7",
+        "name": "Lollipop",
+        "image": "https://i.imgur.com/iRz78eP.png",
+        "info": "Yes, candy is a vegetable."
+    },
+    "8": {
+        "id": "8",
+        "name": "Sarah Ang Hay",
+        "image": "https://i.imgur.com/yR4hIy0.png",
+        "info": "Give this hay to someone and they will love you back."
+    },
+    "9": {
+        "id": "9",
+        "name": "Deathweed",
+        "image": "https://i.imgur.com/cqZFfQW.png",
+        "info": "Someone's corpse became a flower."
+    },
+    "10": {
+        "id": "10",
+        "name": "A(n) Ivy",
+        "image": "https://i.imgur.com/WlydpCW.png",
+        "info": "The artist is getting their growth spurt."
+    },
+    "11": {
+        "id": "11",
+        "name": "Sardine",
+        "image": "https://i.imgur.com/HDcx1RO.png",
+        "info": "Yes, you can grow fish too!"
+    },
+    "12": {
+        "id": "12",
+        "name": "Peace",
+        "image": "https://i.imgur.com/RZc8625.png",
+        "info": "You can raise Peace with love and care!"
+    },
+    "13": {
+        "id": "13",
+        "name": "Heart",
+        "image": "https://i.imgur.com/41THSqI.png",
+        "info": "You ever cut grass in Legend of Zelda?"
+    },
+    "14": {
+        "id": "14",
+        "name": "Ball",
+        "image": "https://i.imgur.com/sMjpc0Z.png",
+        "info": "Ah, so that's where schools get their rubber balls!"
+    },
+    "15": {
+        "id": "15",
+        "name": "Feather",
+        "image": "https://i.imgur.com/z1ipCCq.png",
+        "info": "If you let it grow longer, maybe it'll become a bird! (jk you can't)"
+    },
+    "16": {
+        "id": "16",
+        "name": "Coffefe",
+        "image": "https://i.imgur.com/FEAZxtT.png",
+        "info": "Grean tea."
+    },
+    "17": {
+        "id": "17",
+        "name": "Bread",
+        "image": "https://i.imgur.com/qIY3Gn7.png",
+        "info": "This is just wheat, but we skipped the whole process."
+    },
+    "18": {
+        "id": "18",
+        "name": "Baby",
+        "image": "https://i.imgur.com/qDD6550.png",
+        "info": "So this is where babies come from!"
+    },
+    "19": {
+        "id": "19",
+        "name": "Chocolate",
+        "image": "https://i.imgur.com/u6y7oXB.png",
+        "info": "This is just cocoa, but we skipped the whole process."
+    },
+    "20": {
+        "id": "20",
+        "name": "1000 TP",
+        "image": "https://i.imgur.com/1e1hGyg.png",
+        "info": "Just kidding, you can't grow money!"
+    },
+    "21": {
+        "id": "21",
+        "name": "100 TP",
+        "image": "https://i.imgur.com/PYdWp8V.png",
+        "info": "Wait a minute, a seed costs more than this!"
+    },
+    "22": {
+        "id": "22",
+        "name": "Pink Balloon",
+        "image": "https://i.imgur.com/DX6DOzu.png",
+        "info": "Don't pop it!"
+    },
+    "23": {
+        "id": "23",
+        "name": "Blue Balloon",
+        "image": "https://i.imgur.com/tfdB7GE.png",
+        "info": "Wow! A blue balloon!"
+    },
+    "24": {
+        "id": "24",
+        "name": "Yellow Balloon",
+        "image": "https://i.imgur.com/yzI9txy.png",
+        "info": "Ew, a yellow balloon!"
+    },
+    "25": {
+        "id": "25",
+        "name": "Green Balloon",
+        "image": "https://i.imgur.com/i5oUAlp.png",
+        "info": "No way! A green balloon!"
+    },
+    "26": {
+        "id": "26",
+        "name": "Burger Plant",
+        "image": "https://i.imgur.com/J2s40An.png",
+        "info": "Impossible! A veggie burger?!"
+    },
+    "27": {
+        "id": "27",
+        "name": "Butterfly Plant",
+        "image": "https://i.imgur.com/SvJ04yE.png",
+        "info": "The leaves resemble a butterfly."
+    },
+    "28": {
+        "id": "28",
+        "name": "Fertilizer",
+        "image": "https://i.imgur.com/JrGpDDW.png",
+        "info": "Its just poop!"
+    },
+    "29": {
+        "id": "29",
+        "name": "Fishy Plant",
+        "image": "https://i.imgur.com/f2kRIEe.png",
+        "info": "Glub glub."
+    },
+    "30": {
+        "id": "30",
+        "name": "French Fry",
+        "image": "https://i.imgur.com/0gIxjny.png",
+        "info": "Comes with ketchup!"
+    },
+    "31": {
+        "id": "31",
+        "name": "Neko Neko Nyan Nyan",
+        "image": "https://i.imgur.com/ph4bju3.png",
+        "info": "Nyan nyan~!"
+    },
+    "32": {
+        "id": "32",
+        "name": "Pen Pineapple Apple Pen",
+        "image": "https://i.imgur.com/mTLGJWw.png",
+        "info": "Based off a cool guy with sunglasses."
+    },
+    "33": {
+        "id": "33",
+        "name": "Strawberry",
+        "image": "https://i.imgur.com/aotY9GL.png",
+        "info": "Fun Fact: The dev thinks all strawberries are sour."
+    },
+    "34": {
+        "id": "34",
+        "name": "Taco",
+        "image": "https://i.imgur.com/pYC0DgQ.png",
+        "info": "I like tacos."
+    },
+    "35": {
+        "id": "35",
+        "name": "Tomato",
+        "image": "https://i.imgur.com/CUMf7fa.png",
+        "info": "Cause we need another tomato in this server."
+    },
+    "36": {
+        "id": "36",
+        "name": "Amethyst",
+        "image": "https://i.imgur.com/RJ05A5E.png",
+        "info": "Wow pretty, a purple gem!"
+    },
+    "37": {
+        "id": "37",
+        "name": "Emerald",
+        "image": "https://i.imgur.com/NXMuFuE.png",
+        "info": "Strangely, a leaf is growing from it."
+    },
+    "38": {
+        "id": "38",
+        "name": "Ruby",
+        "image": "https://i.imgur.com/HC5Z5se.png",
+        "info": "Is this the Philosopher's Stone?! Oh it's just a ruby."
+    },
+    "39": {
+        "id": "39",
+        "name": "Sapphire",
+        "image": "https://i.imgur.com/hwivEd1.png",
+        "info": "Reminds me of a giant blue whale..."
+    },
+    "40": {
+        "id": "40",
+        "name": "Sussy Plant",
+        "image": "https://i.imgur.com/0U3QN5T.png",
+        "info": "This plant kinda sus..."
+    }
+}

@@ -1,4 +1,4 @@
-import { useCallback, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import "./App.css";
 import Gallery from "../Gallery";
 import Controls from "../Controls";
@@ -6,6 +6,8 @@ import JSZip from "jszip";
 import { saveAs } from "file-saver";
 import DragAndDrop from "../DragAndDrop/DragAndDrop";
 import FileNames from "../FileNames/FileNames";
+import Fishdex from "../../assets/fishdex.json";
+import Gardendex from "../../assets/gardendex.json";
 
 function App() {
   const [images, setImages] = useState([]);
@@ -23,6 +25,19 @@ function App() {
     },
     [images]
   );
+
+  /*
+  useEffect(() => {
+    const newImages = [...images];
+    Object.entries(Gardendex).forEach((obj, i) => {
+      newImages.push({
+        src: obj[1].image,
+        name: i,
+      });
+    });
+    setImages(newImages);
+  }, []);
+  */
 
   const removeImage = useCallback(
     (index) => {
@@ -65,6 +80,7 @@ function App() {
         return new Promise((resolve, reject) => {
           const img = new Image();
           img.src = src.src;
+          img.crossOrigin = "anonymous";
           img.onerror = reject;
           img.onload = () => {
             const imageWidth = img.width;
